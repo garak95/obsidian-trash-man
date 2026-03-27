@@ -1,11 +1,10 @@
 {
-	"id": "sample-plugin",
-	"name": "Sample Plugin",
+	"id": "trash-man",
+	"name": "Trash Man",
 	"version": "1.0.0",
 	"minAppVersion": "0.15.0",
-	"description": "Demonstrates some of the capabilities of the Obsidian API.",
-	"author": "Obsidian",
-	"authorUrl": "https://obsidian.md",
-	"fundingUrl": "https://obsidian.md/pricing",
+	"description": "Trash Man allows you to view files in the local .trash, restore them, and permanently delete them.",
+	"author": "garak95",
+	"authorUrl": "https://github.com/garak95/obsidian-trash-man",
 	"isDesktopOnly": false
 }

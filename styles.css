@@ -1,8 +1,54 @@
-/*
+.mod-trash-man-modal {
+  width: var(--modal-width);
+  height: var(--modal-height);
+  max-width: var(--modal-max-width);
+  max-height: var(--modal-max-height);
+}
 
-This CSS file will be included with your plugin, and
-available in the app when your plugin is enabled.
+.mod-trash-man-modal .modal-content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: stretch;
+  gap: 1em;
+  height: 90%;
+}
 
-If your plugin does not need CSS, delete this file.
+.mod-trash-man-sidebar {
+  flex-shrink: 0;
+  width: 300px;
+  height: 100%;
+  border-right: 1px solid var(--background-modifier-border);
+  overflow-y: scroll;
+}
 
-*/
+.mod-trash-man-item {
+  padding: 0.2em;
+  margin: 0.2em;
+}
+
+.mod-trash-man-item:hover {
+  background-color: var(--background-modifier-hover);
+}
+
+.mod-trash-man-item.is-active,
+.mod-trash-man-item.is-active:hover {
+  background-color: var(--interactive-accent);
+  color: var(--text-on-accent);
+}
+
+.mod-trash-man-content {
+  overflow: scroll;
+  flex-grow: 1;
+}
+
+.mod-trash-man-file-preview {
+  width: 100%;
+}
+
+.mod-trash-man-file-preview * {
+  font-family: monospace;
+  max-width: 100%;
+}

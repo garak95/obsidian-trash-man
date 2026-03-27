@@ -1,7 +1,7 @@
 {
-	"name": "obsidian-sample-plugin",
+	"name": "obsidian-trash-man",
 	"version": "1.0.0",
-	"description": "This is a sample plugin for Obsidian (https://obsidian.md)",
+	"description": "Trash Man allows you to view files in the local .trash, restore them, and permanently delete them.",
 	"main": "main.js",
 	"type": "module",
 	"scripts": {
@@ -11,7 +11,7 @@
 		"lint": "eslint ."
 	},
 	"keywords": [],
-	"license": "0-BSD",
+	"license": "MIT",
 	"devDependencies": {
 		"@types/node": "^16.11.6",
 		"esbuild": "0.25.5",
