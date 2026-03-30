@@ -5,13 +5,13 @@ export default class TrashManPlugin extends Plugin {
   async onload() {
     this.addCommand({
       id: "open-trash-manager",
-      name: "Open Trash Manager",
+      name: "Open trash manager",
       callback: () => {
         new TrashModal(this.app).open();
       },
     });
 
-    this.addRibbonIcon("trash", "Open Trash Manager", () => {
+    this.addRibbonIcon("trash", "Open trash manager", () => {
       new TrashModal(this.app).open();
     });
   }

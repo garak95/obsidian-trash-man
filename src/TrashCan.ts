@@ -89,7 +89,7 @@ export class TrashCan {
         // Make sure path doesn't end up outside the trash can after evaluating all /../..
         // path = normalize(path);
         path = path
-            .replace(/[\\\/]+/g, '/')
+            .replace(/[/\\]+/g, '/')
             .replace(/\/\.\.\//g, '/')
             .replace(/^\/+/, '');
         return normalizePath(this.path + "/" + normalizePath(path));

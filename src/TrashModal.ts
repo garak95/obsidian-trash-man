@@ -4,20 +4,22 @@ import { TrashRestoreModal } from "TrashRestoreModal";
 import { TrashDeleteModal } from "TrashDeleteModal";
 
 export class TrashModal extends Modal {
-  sidebarDiv: HTMLDivElement;
-  contentDiv: HTMLDivElement;
+  filterInput: HTMLInputElement;
+  itemsDiv: HTMLDivElement;
   headerDiv: HTMLDivElement;
   previewDiv: HTMLDivElement;
   trashCan: TrashCan;
 
   constructor(app: App) {
     super(app);
-    this.setTitle("Trash Manager");
+    this.setTitle("Trash manager");
     this.modalEl.addClass("mod-trash-man-modal");
-    this.sidebarDiv = this.contentEl.createEl("div", { attr: { class: "mod-trash-man-sidebar" } });
-    this.contentDiv = this.contentEl.createEl("div", { attr: { class: "mod-trash-man-content" } });
-    this.headerDiv = this.contentDiv.createEl("div", { attr: { class: "mod-trash-man-file-header" } });
-    this.previewDiv = this.contentDiv.createEl("div", { attr: { class: "mod-trash-man-file-preview" } });
+    const sidebarDiv = this.contentEl.createEl("div", { attr: { class: "mod-trash-man-sidebar" } });
+    this.filterInput = sidebarDiv.createEl("input", { placeholder: "Filter..." });
+    this.itemsDiv = sidebarDiv.createEl("div", { attr: { class: "mod-trash-man-items" }});
+    const contentDiv = this.contentEl.createEl("div", { attr: { class: "mod-trash-man-content" } });
+    this.headerDiv = contentDiv.createEl("div", { attr: { class: "mod-trash-man-file-header" } });
+    this.previewDiv = contentDiv.createEl("div", { attr: { class: "mod-trash-man-file-preview" } });
     this.trashCan = new TrashCan(app.vault);
   }
 
@@ -27,8 +29,14 @@ export class TrashModal extends Modal {
     let selectedPath: string = "";
     let filterValue: string = "";
 
+    const filter = this.filterInput;
+    const list = this.itemsDiv;
+    const preview = this.previewDiv;
+    const filename = this.headerDiv.createEl("h2");
+    const buttons = this.headerDiv.createEl("div");
+
     const selectItem = async (path: string) => {
-      this.sidebarDiv.querySelectorAll('.is-active').forEach((el) => {
+      this.itemsDiv.querySelectorAll('.is-active').forEach((el) => {
         el.removeClass('is-active');
       });
       preview.empty();
@@ -62,7 +70,7 @@ export class TrashModal extends Modal {
       } else if (item.path.match(/(jpe?g|png|gif|bmp|svg)$/)) {
         preview.createEl('img', { attr: { src: item.getResourcePath() } });
       } else {
-        preview.innerHTML = `Can't preview this type of file! <a href=".trash/${item.path}">Open outside obsidian.</a>`;
+        preview.createEl('em', { text: "Can't preview this type of file!" });
       }
       filename.textContent = item.path;
       el.addClass('is-active');
@@ -79,7 +87,7 @@ export class TrashModal extends Modal {
       selectedIndex = visibleItems.findIndex(([el, item]) => item.path === selectedPath);
       selectedIndex += 1;
       if (selectedIndex < visibleItems.length) {
-        selectItem(visibleItems[selectedIndex]?.[1].path || "");
+        await selectItem(visibleItems[selectedIndex]?.[1].path || "");
         // visibleItems[selectedIndex]?.[0].scrollIntoView();
       }
       if (list.parentElement)
@@ -117,15 +125,8 @@ export class TrashModal extends Modal {
       await selectItem(selectedPath);
     };
 
-    const preview = this.previewDiv;
-    const filename = this.headerDiv.createEl("h2");
-    const buttons = this.headerDiv.createEl("div");
     buttons.createEl('button', { text: "Restore" }).onclick = restoreItem;
     buttons.createEl('button', { text: "Delete forever" }).onclick = deleteItem;
-
-    const filter = this.sidebarDiv.createEl('div').createEl('input', { placeholder: "Filter..." });
-    const list = this.sidebarDiv.createEl('div');
-
     filter.onchange = async () => {
       filterValue = filter.value;
       await refresh(filterValue);
