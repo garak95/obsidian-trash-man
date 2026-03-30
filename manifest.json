@@ -2,7 +2,7 @@
 	"id": "trash-man",
 	"name": "Trash Man",
 	"version": "1.0.0",
-	"minAppVersion": "0.15.0",
+	"minAppVersion": "1.0.0",
 	"description": "Trash Man allows you to view files in the local .trash, restore them, and permanently delete them.",
 	"author": "garak95",
 	"authorUrl": "https://github.com/garak95/obsidian-trash-man",
