@@ -12,15 +12,26 @@
   justify-content: flex-start;
   align-items: stretch;
   align-content: stretch;
-  gap: 1em;
   height: 90%;
 }
 
 .mod-trash-man-sidebar {
   flex-shrink: 0;
-  width: 300px;
+  width: 250px;
   height: 100%;
   border-right: 1px solid var(--background-modifier-border);
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+}
+
+.mod-trash-man-search input {
+  padding: 0.2em;
+  width: 100%;
+}
+
+.mod-trash-man-items {
+  height: 100%;
   overflow-y: scroll;
 }
 
@@ -42,6 +53,7 @@
 .mod-trash-man-content {
   overflow: scroll;
   flex-grow: 1;
+  padding: .5em;
 }
 
 .mod-trash-man-file-preview {
