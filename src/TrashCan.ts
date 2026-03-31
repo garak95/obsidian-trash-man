@@ -53,7 +53,7 @@ export class TrashCan {
         this.path = trashPath;
     }
 
-    async getItems(): Promise<TrashCanItem[]> {
+    async getItems(sorted: boolean = true): Promise<TrashCanItem[]> {
         const trashPath = normalizePath(this.path);
         const items: TrashCanItem[] = [];
 
@@ -81,6 +81,13 @@ export class TrashCan {
         await walkFolder(trashPath, (item, stat) => {
             items.push(new TrashCanItem(this, normalizePath(item.replace(trashPath, '')), stat));
         });
+
+        if (sorted) {
+            items.sort((a, b) => {
+                let pathA = a.path.toUpperCase(), pathB = b.path.toUpperCase();
+                return (pathA < pathB) ? -1 : (pathA > pathB) ? 1 : 0;
+            });
+        }
 
         return items;
     }

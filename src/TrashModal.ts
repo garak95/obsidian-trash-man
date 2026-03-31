@@ -14,13 +14,13 @@ export class TrashModal extends Modal {
     super(app);
     this.setTitle("Trash manager");
     this.modalEl.addClass("mod-trash-man-modal");
-    const sidebarDiv = this.contentEl.createEl("div", { attr: { class: "mod-trash-man-sidebar" } });
-    this.filterInput = sidebarDiv.createEl("div", { attr: { class: "mod-trash-man-search" } })
+    const sidebarDiv = this.contentEl.createEl("div", { cls: "mod-trash-man-sidebar" });
+    this.filterInput = sidebarDiv.createEl("div", { cls: "mod-trash-man-search" })
       .createEl("input", { placeholder: "Filter..." });
-    this.itemsDiv = sidebarDiv.createEl("div", { attr: { class: "mod-trash-man-items" } });
-    const contentDiv = this.contentEl.createEl("div", { attr: { class: "mod-trash-man-content" } });
-    this.headerDiv = contentDiv.createEl("div", { attr: { class: "mod-trash-man-file-header" } });
-    this.previewDiv = contentDiv.createEl("div", { attr: { class: "mod-trash-man-file-preview" } });
+    this.itemsDiv = sidebarDiv.createEl("div", { cls: "mod-trash-man-items" });
+    const contentDiv = this.contentEl.createEl("div", { cls: "mod-trash-man-content" });
+    this.headerDiv = contentDiv.createEl("div", { cls: "mod-trash-man-file-header" });
+    this.previewDiv = contentDiv.createEl("div", { cls: "mod-trash-man-file-preview" });
     this.trashCan = new TrashCan(app.vault);
   }
 
